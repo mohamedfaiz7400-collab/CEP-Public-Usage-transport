@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+# Streamlit
+.streamlit/secrets.toml
+# Data - 33MB CSV is OK (<100MB limit) but slow push, use Git LFS if needed
+# Uncomment to ignore large data:
+# data/bus_data.csv
+models/*.pkl
+*.pkl
+Thumbs.db
+.DS_Store
+bus.db
