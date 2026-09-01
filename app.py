@@ -80,7 +80,19 @@ COMPARISON_PATH = Path(__file__).parent / "models" / "model_comparison.csv"
 # ---------------------------------------------------------
 @st.cache_data(show_spinner="Loading 500k bus trips…")
 def load_data():
-    df = pd.read_csv(DATA_PATH)
+    # Fix for Streamlit Cloud: if CSV not pushed, generate small synthetic fallback
+    if not DATA_PATH.exists():
+        st.warning(f"⚠️ {DATA_PATH} not found in Cloud (was 33MB CSV not pushed?). Generating 20k synthetic fallback for demo. Push data/bus_data.csv to GitHub to use full 500k.")
+        try:
+            from data_generator import generate
+            df = generate(n=20000, out_path=DATA_PATH)
+        except Exception as e:
+            st.error(f"Fallback generation failed: {e}")
+            st.code(traceback.format_exc())
+            # minimal empty frame to avoid crash
+            return pd.DataFrame(columns=["Agency","Source","Destination","Bus Type","Travel Date","Fare Price (INR)","Total Seats","Duration (hours)","Year","Month","MonthName","DayOfWeek","DayName","Route","Fare_per_hour","Revenue_75pct","YearMonth"])
+    else:
+        df = pd.read_csv(DATA_PATH)
     df["Travel Date"] = pd.to_datetime(df["Travel Date"])
     df["Year"] = df["Travel Date"].dt.year
     df["Month"] = df["Travel Date"].dt.month
