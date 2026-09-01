@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Streamlit: app.py",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "streamlit",
+      "args": ["run", "app.py", "--server.port", "8501"],
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "ML: train fare_model",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/models/ml_models.py",
+      "console": "integratedTerminal"
+    }
+  ]
+}

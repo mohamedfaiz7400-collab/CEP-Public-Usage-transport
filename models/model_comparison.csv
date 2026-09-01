@@ -1,0 +1,6 @@
+Model,R2,MAE,RMSE,time
+GradBoost,0.0637,639.21,747.65,11.4
+LightGBM,0.0613,639.87,748.6,2.7
+RandomForest,0.0427,644.57,755.97,4.7
+XGBoost,0.0409,644.99,756.7,1.4
+LinearRegression,0.0029,652.54,771.53,1.5

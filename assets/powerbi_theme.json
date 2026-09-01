@@ -1,0 +1,14 @@
+{
+  "name": "CEP Teal",
+  "dataColors": ["#0E7490","#0891B2","#06B6D4","#22D3EE","#67E8F9","#A5F3FC","#0C4A6E","#155E75","#164E63","#083344"],
+  "background": "#F8FAFC",
+  "foreground": "#0F172A",
+  "tableAccent": "#0E7490",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "title": [{"fontSize": 12, "fontFamily": "Segoe UI", "color": {"solid": {"color": "#0F172A"}}}]
+      }
+    }
+  }
+}

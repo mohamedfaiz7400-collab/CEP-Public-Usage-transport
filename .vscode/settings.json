@@ -1,0 +1,13 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+  "python.terminal.activateEnvironment": true,
+  "python.terminal.activateEnvInCurrentTerminal": true,
+  "files.associations": {
+    "*.sql": "sql"
+  },
+  "editor.rulers": [100],
+  "python.analysis.typeCheckingMode": "basic",
+  "files.exclude": {
+    "__pycache__": true
+  }
+}

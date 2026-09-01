@@ -1,0 +1,21 @@
+// CEP Public Transport - Power BI DAX Measures
+// Paste into Power BI Desktop: Modeling -> New Measure
+
+// ===== KPI CARDS =====
+Total Trips = COUNTROWS(bus_trips)
+Avg Fare = AVERAGE(bus_trips[Fare Price (INR)])
+Median Fare = MEDIAN(bus_trips[Fare Price (INR)])
+Avg Duration = AVERAGE(bus_trips[Duration (hours)])
+Avg Seats = AVERAGE(bus_trips[Total Seats])
+Est Revenue (75% Occupancy) = SUMX(bus_trips, bus_trips[Fare Price (INR)] * bus_trips[Total Seats] * 0.75)
+Fare per Hour = DIVIDE([Avg Fare], [Avg Duration], 0)
+Unique Routes = DISTINCTCOUNT(bus_trips[Route])
+
+// ===== ROUTE LEVEL =====
+Route = bus_trips[Source] & " → " & bus_trips[Destination]
+Revenue by Route = SUMX(bus_trips, bus_trips[Fare Price (INR)] * bus_trips[Total Seats] * 0.75)
+Fare_per_Hour_Route = DIVIDE(AVERAGE(bus_trips[Fare Price (INR)]), AVERAGE(bus_trips[Duration (hours)]))
+Efficiency Flag = IF([Fare_per_Hour_Route] < 110, "⚠️ Inefficient", IF([Fare_per_Hour_Route] > 160, "✅ High Efficiency", "Medium"))
+
+// ===== TIME INTELLIGENCE =====
+Trips YoY % = DIVIDE([Total Trips] - CALCULATE([Total Trips], SAMEPERIODLASTYEAR('Calendar'[Date])), CALCULATE([Total Trips], SAMEPERIODLASTYEAR('Calendar'[Date])))
