@@ -619,7 +619,7 @@ def page_prediction():
         with c1:
             i_agency = st.selectbox("Agency", sorted(df_full["Agency"].unique()), key="pred_ag")
             i_source = st.selectbox("Source", sorted(df_full["Source"].unique()), key="pred_src")
-            i_dest = st.selectbox("Destination", sorted(df_full["Destination"].unique(), key="pred_dst"))
+            i_dest = st.selectbox("Destination", sorted(df_full["Destination"].unique()), key="pred_dst")
             i_bustype = st.selectbox("Bus Type", sorted(df_full["Bus Type"].unique()), key="pred_bus")
         with c2:
             i_seats = st.slider("Total Seats", 20, 50, 38, key="pred_seats")
